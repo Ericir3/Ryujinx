@@ -439,10 +439,9 @@ namespace ChocolArm64.Memory
         public void WriteBytes(long position, byte[] data, int startIndex, int size)
         {
             //Note: This will be moved later.
-            //Using Translate instead of TranslateWrite is on purpose.
             EnsureRangeIsValid(position, (uint)size);
 
-            Marshal.Copy(data, startIndex, (IntPtr)Translate(position), size);
+            Marshal.Copy(data, startIndex, (IntPtr)TranslateWrite(position), size);
         }
 
         public void CopyBytes(long src, long dst, long size)
